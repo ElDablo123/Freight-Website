@@ -1,0 +1,85 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+import Hero from '~/components/widgets/Hero.astro';
+import Note from '~/components/widgets/Note.astro';
+import Features from '~/components/widgets/Features.astro';
+import Features3 from '~/components/widgets/Features3.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import Content from '~/components/widgets/Content.astro';
+import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import ContactUs from '~/components/widgets/ContactUs.astro';
+import FeatureSection from '~/components/color';
+
+const metadata = {
+  title: 'Freight Collection Solutions Law Group, PLLC',
+  ignoreTitleTemplate: true,
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+  <Features3
+    title='WELCOME'
+    subtitle='HIeniornof'
+    image={{ src: '~/assets/images/image 5.png', alt: 'Image' }}
+  
+  />
+
+
+
+  <Stats
+    stats={[
+      { title: 'Years of Experience', amount: '7+' },
+      { title: 'Cases Closed', amount: '1,700+' },
+      { title: 'Collected for Clients', amount: '$20M+' }
+    ]}
+  />
+  <!-- Note Widget ******************* -->
+  <FeatureSection />
+  
+  
+ 
+
+  <!-- Features Widget *************** -->
+
+  
+  <!-- Content Widget **************** -->
+
+  
+
+  <!-- Content Widget **************** -->
+
+  
+
+  <!-- Content Widget **************** -->
+
+  
+
+  <!-- Steps Widget ****************** -->
+
+  
+
+  <!-- Features2 Widget ************** -->
+
+  
+
+  <!-- HighlightedPosts Widget ******* -->
+
+  
+
+  <!-- FAQs Widget ******************* -->
+
+  
+
+  <!-- Stats Widget ****************** -->
+
+  
+
+  <!-- CallToAction Widget *********** -->
+
+  
+</Layout>

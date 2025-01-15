@@ -1,0 +1,77 @@
+---
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro'
+import Timeline from '~/components/ui/Timeline.astro';
+import Headline from '~/components/ui/Headline.astro';
+import Image from '~/components/common/Image.astro';
+import Features from '~/components/widgets/Features.astro'
+import type { Steps as Props } from '~/types';
+import icon from "astro-icon"
+
+const {
+    title = await Astro.slots.render('title'),
+    subtitle = await Astro.slots.render('subtitle'),
+    tagline = await Astro.slots.render('tagline'),
+    image = await Astro.slots.render('image'),
+    isReversed = false,
+
+    id,
+    isDark = false,
+    classes = {},
+    bg = await Astro.slots.render('bg')
+} = Astro.props;
+---
+
+<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-5xl ${classes?.container ?? ''}`} bg={bg}>
+    <div class="bg-white py-16">
+        <div class="container mx-auto px-4">
+          <div class="grid md:grid-cols-2 gap-12">
+            <div>
+              <h2 class="text-3xl font-bold mb-6">Contact Us</h2>
+              <div class="space-y-4">
+                <Features
+                    id="feature"
+                    items={[
+                        {
+                            title: 'Houston, Texas',
+                            icon: '',
+                        },
+                        {
+                            title: 'Call Us',
+                            icon: '',
+                        },
+                        {
+                            title: 'Email Us',
+                            icon: '',
+                        }
+                    ]}
+                ></Features>
+                
+                
+              </div>
+            </div>
+            <div>
+              <form class="space-y-4">
+                <input 
+                  type="text" 
+                  placeholder="Your Name"
+                  class="w-full p-3 border border-slate-300 rounded-lg"
+                />
+                <input 
+                  type="email" 
+                  placeholder="Your Email"
+                  class="w-full p-3 border border-slate-300 rounded-lg"
+                />
+                <textarea 
+                  placeholder="Your Message"
+                  class="w-full p-3 border border-slate-300 rounded-lg"
+                  rows="4"
+                ></textarea>
+                <button class="bg-orange-500 text-white px-8 py-3 rounded-lg hover:bg-orange-600 w-full">
+                  Send Message
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+</WidgetWrapper>
