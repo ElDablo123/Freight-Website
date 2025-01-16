@@ -17,6 +17,8 @@ import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin, lazyImagesRehype
 
 import react from '@astrojs/react';
 
+import cloudflare from '@astrojs/cloudflare';
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const hasExternalScripts = false;
@@ -78,4 +80,6 @@ export default defineConfig({
       },
     },
   },
+
+  adapter: cloudflare(),
 });
