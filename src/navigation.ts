@@ -7,15 +7,15 @@ export const headerData = {
       links: [
         {
           text: 'Undefined',
-          href: getPermalink('/homes/saas'),
+          href: getPermalink('#'),
         },
         {
           text: 'Undefined',
-          href: getPermalink('/homes/startup'),
+          href: getPermalink('#'),
         },
         {
           text: 'Undefined',
-          href: getPermalink('/homes/mobile-app'),
+          href: getPermalink('#'),
         },
         
       ],
@@ -25,31 +25,31 @@ export const headerData = {
       links: [
         {
           text: 'Features (Anchor Link)',
-          href: getPermalink('/#features'),
+          href: getPermalink('#'),
         },
         {
           text: 'Services',
-          href: getPermalink('/services'),
+          href: getPermalink('#'),
         },
         {
           text: 'Pricing',
-          href: getPermalink('/pricing'),
+          href: getPermalink('#'),
         },
         {
           text: 'About us',
-          href: getPermalink('/about'),
+          href: getPermalink('#'),
         },
         {
           text: 'Contact',
-          href: getPermalink('/contact'),
+          href: getPermalink('#'),
         },
         {
           text: 'Terms',
-          href: getPermalink('/terms'),
+          href: getPermalink('#'),
         },
         {
           text: 'Privacy policy',
-          href: getPermalink('/privacy'),
+          href: getPermalink('#'),
         },
       ],
     },
@@ -58,27 +58,27 @@ export const headerData = {
       links: [
         {
           text: 'Lead Generation',
-          href: getPermalink('/landing/lead-generation'),
+          href: getPermalink('#'),
         },
         {
           text: 'Long-form Sales',
-          href: getPermalink('/landing/sales'),
+          href: getPermalink('#'),
         },
         {
           text: 'Click-Through',
-          href: getPermalink('/landing/click-through'),
+          href: getPermalink('#'),
         },
         {
           text: 'Product Details (or Services)',
-          href: getPermalink('/landing/product'),
+          href: getPermalink('#'),
         },
         {
           text: 'Coming Soon or Pre-Launch',
-          href: getPermalink('/landing/pre-launch'),
+          href: getPermalink('#'),
         },
         {
           text: 'Subscription',
-          href: getPermalink('/landing/subscription'),
+          href: getPermalink('#'),
         },
       ],
     },
@@ -87,23 +87,23 @@ export const headerData = {
       links: [
         {
           text: 'Blog List',
-          href: getBlogPermalink(),
+          href: '#',
         },
         {
           text: 'Article',
-          href: getPermalink('get-started-website-with-astro-tailwind-css', 'post'),
+          href: "#",
         },
         {
           text: 'Article (with MDX)',
-          href: getPermalink('markdown-elements-demo-post', 'post'),
+          href: '#',
         },
         {
           text: 'Category Page',
-          href: getPermalink('tutorials', 'category'),
+          href: '#',
         },
         {
           text: 'Tag Page',
-          href: getPermalink('astro', 'tag'),
+          href: '#',
         },
       ],
     },
@@ -113,7 +113,7 @@ export const headerData = {
     }
     
   ],
-  actions: [{ text: 'Download', href: 'https://github.com/onwidget/astrowind', target: '_blank' }],
+  actions: [{ text: 'Download', href: '#', target: '_blank' }],
 };
 
 export const footerData = {
@@ -153,15 +153,15 @@ export const footerData = {
     },
   ],
   secondaryLinks: [
-    { text: 'Terms', href: getPermalink('/terms') },
-    { text: 'Privacy Policy', href: getPermalink('/privacy') },
+    { text: 'Terms', href: getPermalink('#') },
+    { text: 'Privacy Policy', href: getPermalink('#') },
   ],
   socialLinks: [
     { ariaLabel: 'X', icon: 'tabler:brand-x', href: '#' },
     { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: '#' },
     { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: '#' },
 
-    { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/onwidget/astrowind' },
+    { ariaLabel: 'Github', icon: 'tabler:brand-github', href: '#' },
   ],
   footNote: `
     <img class="w-15 h-10 md:w-15 md:h-10 md:-mt-2 bg-cover mr-3 rtl:mr-0 rtl:ml-1.5 float-left rtl:float-right " src="src/assets/images/Logo_Transparent.png" alt="FCS logo" loading="lazy"></img>
