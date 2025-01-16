@@ -1,6 +1,6 @@
 export const submitForm = async (formData) => {
   try {
-    const response = await fetch('https://www.formbackend.com/f/36a8053341374fc6', {
+    const response = await fetch('', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
