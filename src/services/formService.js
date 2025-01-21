@@ -1,6 +1,7 @@
 // Remove dotenv import
 export const submitForm = async (formData) => {
   try {
+
     const response = await fetch(import.meta.env.VITE_FORM, {
       method: 'POST',
       headers: {
