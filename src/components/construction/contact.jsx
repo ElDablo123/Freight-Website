@@ -1,13 +1,16 @@
 import { Phone, MapPin, Mail } from 'lucide-react';
-import ReCAPTCHA from 'react-google-recaptcha';
-import { useRef, useState } from 'react';
-import { submitForm } from 'src/services/formService';
-import ReCaptcha from './recaptcha';
-
-const RECAPTCHA_SITE_KEY = "6Lep_7gqAAAAAEn64OGTWttvoff0mGCwAICMd9PT"; // Replace with your actual site key
+import { useState, useEffect } from 'react';
+import { VITE_SITE_KEY, VITE_FORM } from 'astro:env/client';
 
 const FeatureSection2 = () => {
-  const [token, setToken] = useState(null);
+
+  // Move environment variables inside the component and add validation
+
+
+  if (!VITE_SITE_KEY) {
+    console.error('reCAPTCHA site key is not defined in environment variables');
+  }
+
   const [inputs, setInputs] = useState({
     name: '',
     email: '',
@@ -18,12 +21,66 @@ const FeatureSection2 = () => {
     submitted: false,
     error: null
   });
+  const [recaptchaLoaded, setRecaptchaLoaded] = useState(false);
   
-  const recaptchaRef = useRef(null);
+  useEffect(() => {
+    // Load the reCAPTCHA script
+    const loadRecaptcha = async () => {
+      try {
+        // Validate site key
+        if (!VITE_SITE_KEY) {
+          throw new Error('reCAPTCHA site key is missing');
+        }
 
-  const onVerify = (value) => {
-    setToken(value);
-  };
+        // Check if reCAPTCHA is already loaded
+        if (window.grecaptcha) {
+          
+          setRecaptchaLoaded(true);
+          return;
+        }
+
+        // Create and load the script
+        const script = document.createElement('script');
+        script.src = `https://www.google.com/recaptcha/api.js?render=${VITE_SITE_KEY}`;
+        script.async = true;
+        script.defer = true;
+        
+        // Create a promise to handle script loading
+        await new Promise((resolve, reject) => {
+          script.onload = () => {
+            
+            window.grecaptcha.ready(() => {
+              
+              setRecaptchaLoaded(true);
+              resolve();
+            });
+          };
+          script.onerror = (error) => {
+            console.error('Error loading reCAPTCHA:', error);
+            reject(error);
+          };
+          document.body.appendChild(script);
+        });
+
+      } catch (error) {
+        console.error('Error in loadRecaptcha:', error);
+        setStatus(prev => ({
+          ...prev,
+          error: 'Failed to load reCAPTCHA. Please refresh the page.'
+        }));
+      }
+    };
+    
+    loadRecaptcha();
+
+    // Cleanup
+    return () => {
+      const script = document.querySelector(`script[src*="recaptcha"]`);
+      if (script) {
+        document.body.removeChild(script);
+      }
+    };
+  }, [VITE_SITE_KEY]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -32,25 +89,43 @@ const FeatureSection2 = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    if (!token) {
-      alert('Please complete the captcha');
-      return;
-    }
+    setStatus({ submitting: true, submitted: false, error: null });
 
     try {
-      setStatus({ submitting: true, submitted: false, error: null });
-      
-      // Validate form inputs
-      if (!inputs.name || !inputs.email || !inputs.message) {
-        throw new Error('Please fill in all fields');
+      // Validate reCAPTCHA is loaded
+      if (!window.grecaptcha) {
+        throw new Error('reCAPTCHA has not loaded. Please refresh the page.');
       }
 
-      // Submit form data
-      await submitForm({
-        ...inputs,
-        token
+      if (!recaptchaLoaded) {
+        throw new Error('reCAPTCHA is not ready yet. Please try again.');
+      }
+
+      
+      
+      // Wait for reCAPTCHA to be ready
+      await new Promise((resolve) => window.grecaptcha.ready(resolve));
+      
+      // Execute reCAPTCHA
+      const token = await window.grecaptcha.execute(VITE_SITE_KEY, {
+        action: 'submit'
       });
+
+      
+
+      // Create form data with recaptcha token
+      const formData = new FormData(e.target);
+      formData.append('g-recaptcha-response', token);
+
+      // Submit the form
+      const response = await fetch(VITE_FORM, {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error('Form submission failed');
+      }
 
       // Reset form on success
       setInputs({
@@ -58,8 +133,6 @@ const FeatureSection2 = () => {
         email: '',
         message: ''
       });
-      setToken(null);
-      recaptchaRef.current.reset();
       
       setStatus({
         submitting: false,
@@ -67,10 +140,9 @@ const FeatureSection2 = () => {
         error: null
       });
       
-      // Show success message
       alert('Thank you for your message! We will get back to you soon.');
-
     } catch (error) {
+      console.error('Form submission error:', error);
       setStatus({
         submitting: false,
         submitted: false,
@@ -86,10 +158,10 @@ const FeatureSection2 = () => {
         <div className="grid md:grid-cols-1 gap-10">
           <div>
             <h2 className="text-3xl font-bold text-black mb-6 text-center">Contact Us</h2>
-            <div className="space-y-4 ">
+            <div className="space-y-4">
               <div className="flex items-center space-x-8">
-                <MapPin className="h-6 w-6 text-orange-500 ml-8 mb-5 " />
-                <span className='text-black text-center'>801 Travis Street, Suite 2101 #1422 <br></br>
+                <MapPin className="h-6 w-6 text-orange-500 ml-8 mb-5" />
+                <span className='text-black text-center'>801 Travis Street, Suite 2101 #1422 <br />
                 Houston, TX 77002</span>
               </div>
               <div className="flex items-center space-x-8">
@@ -103,8 +175,7 @@ const FeatureSection2 = () => {
             </div>
           </div>
           <div>
-          <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
-            <form className="space-y-4" method="POST" onSubmit={handleSubmit}>
+            <form className="space-y-4" onSubmit={handleSubmit} method="POST">
               <input 
                 value={inputs.name || ""} 
                 name="name"
@@ -132,9 +203,6 @@ const FeatureSection2 = () => {
                 onChange={handleChange}
                 required
               ></textarea>
-              <div className="justify-center">
-                <ReCaptcha />
-              </div>
 
               <button 
                 type="submit"

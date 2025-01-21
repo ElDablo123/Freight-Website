@@ -1,8 +1,8 @@
-import React, {useRef} from 'react';
+import React from 'react';
 import { Construction } from 'lucide-react';
 import FeatureSection2 from 'src/components/construction/contact.jsx';
-import ReCAPTCHA from "react-google-recaptcha";
-const RECAPTCHA_SITE_KEY = "6Lep_7gqAAAAAEn64OGTWttvoff0mGCwAICMd9PT";
+
+
 
 const ConstructionOverlay = () => {
   
@@ -26,7 +26,7 @@ const ConstructionOverlay = () => {
             We're working hard to bring you something amazing. Our new website will be ready soon!
           </p>
           <div>
-            <FeatureSection2  />
+            <FeatureSection2   />
             
           </div>
         </div>

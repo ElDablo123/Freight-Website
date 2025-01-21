@@ -1,7 +1,7 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-import { defineConfig } from 'astro/config';
+import { defineConfig, envField } from 'astro/config';
 
 import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
@@ -67,7 +67,26 @@ export default defineConfig({
   image: {
     domains: ['cdn.pixabay.com'],
   },
-
+  env: {
+    schema: {
+      VITE_SITE_KEY: envField.string({
+        context: 'client',
+        access: 'public',
+      }),
+      VITE_SECRET_KEY: envField.string({
+        context: 'server',
+        access: 'secret',
+      }),
+      VITE_FORM: envField.string({
+        context: 'client',
+        access: 'public',
+      }),
+      VITE_API: envField.string({
+        context: 'server',
+        access: 'secret'
+      })
+    },
+  },
   markdown: {
     remarkPlugins: [readingTimeRemarkPlugin],
     rehypePlugins: [responsiveTablesRehypePlugin, lazyImagesRehypePlugin],

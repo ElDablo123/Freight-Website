@@ -1,6 +1,7 @@
+// Remove dotenv import
 export const submitForm = async (formData) => {
   try {
-    const response = await fetch('https://www.formbackend.com/f/36a8053341374fc6', {
+    const response = await fetch(import.meta.env.VITE_FORM, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -12,7 +13,7 @@ export const submitForm = async (formData) => {
         captchaToken: formData.token,
       }),
     });
-
+    console.log(response);
     if (!response.ok) {
       throw new Error('Form submission failed');
     }
