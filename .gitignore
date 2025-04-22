@@ -1,6 +1,12 @@
 # build output
 dist/
 .output/
+.wrangler/
+.vscode/
+.github/
+
+src/content/team/
+
 
 # dependencies
 node_modules/
@@ -23,3 +29,4 @@ pnpm-lock.yaml
 
 .astro
 formService.js
+src/content/team/cristina-belaval.md

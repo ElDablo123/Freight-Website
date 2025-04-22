@@ -3,8 +3,8 @@ slug: cristina-belaval
 name: Cristina Belaval
 title: Managing Partner
 image: /src/assets/images/cristina-belaval-headshot.jfif
-email: beaval.cristina@gmail.com
-phone: (787) 562‑5761
+email: cristina@freight-cs.com
+phone: (832) 554-3134
 education:
   - Master of Laws (LLM), Energy, Environment, and Natural Resources Law, University of Houston Law Center, 2016–2017
   - Doctor of Law (JD), Law (Magna Cum Laude), Inter American University School of Law, 1999–2002
