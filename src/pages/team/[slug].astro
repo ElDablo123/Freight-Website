@@ -1,0 +1,196 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import { Image } from 'astro:assets';
+import { Phone, Mail, Award, Briefcase, BookOpen, FileCheck, Star } from 'lucide-react';
+import { getCollection } from 'astro:content';
+import { render } from 'astro:content';
+
+export const prerender = true;
+
+// Replace the hard-coded teamMembers array with content collection
+export async function getStaticPaths() {
+  const teamMembers = await getCollection('team');
+  console.log("Found team members:", teamMembers.map(m => m.data.slug));
+  
+  return teamMembers.map(member => ({
+    params: { slug: member.data.slug },
+    props: { member },
+  }));
+}
+
+const { member } = Astro.props;
+const { Content } = await render(member);
+const metadata = {
+  title: `${member.data.name} | Freight Collection Solutions Law Group, PLLC`,
+};
+---
+
+<Layout metadata={metadata}>
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <!-- Attorney Header -->
+      <div class="flex flex-col md:flex-row gap-8 mb-12">
+        <div class="md:w-1/3">
+          <div class="rounded-lg overflow-hidden shadow-xl">
+            <Image 
+              src={member.data.image} 
+              alt={member.data.name}
+              class="w-full object-cover"
+              width={500}
+              height={600}
+            />
+          </div>
+        </div>
+        <div class="md:w-2/3">
+          <h1 class="text-4xl font-bold text-gray-800 mb-2">{member.data.name}</h1>
+          <p class="text-2xl text-orange-500 mb-6">{member.data.title}</p>
+          
+          <div class="flex items-center mb-4">
+            <Mail className="w-5 h-5 text-blue-800 mr-3" />
+            <a href={`mailto:${member.data.email}`} class="text-blue-800 hover:underline">{member.data.email}</a>
+          </div>
+          
+          <div class="flex items-center mb-8">
+            <Phone className="w-5 h-5 text-blue-800 mr-3" />
+            <a href={`tel:${member.data.phone.replace(/\D/g,'')}`} class="text-blue-800 hover:underline">{member.data.phone}</a>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {member.data.education && member.data.education.length > 0 && (
+              <div class="bg-indigo-50 rounded-lg p-4">
+                <h2 class="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                  <Award className="w-5 h-5 mr-2" /> Education
+                </h2>
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                  {member.data.education.map(item => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            
+            {member.data.barAdmissions && member.data.barAdmissions.length > 0 && (
+              <div class="bg-indigo-50 rounded-lg p-4">
+                <h2 class="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                  <Briefcase className="w-5 h-5 mr-2" /> Bar Admissions
+                </h2>
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                  {member.data.barAdmissions.map(item => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {member.data.licenses && member.data.licenses.length > 0 && (
+              <div class="bg-indigo-50 rounded-lg p-4">
+                <h2 class="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                  <FileCheck className="w-5 h-5 mr-2" /> Licenses
+                </h2>
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                  {member.data.licenses.map(item => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {member.data.testScores && member.data.testScores.length > 0 && (
+              <div class="bg-indigo-50 rounded-lg p-4">
+                <h2 class="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                  <Star className="w-5 h-5 mr-2" /> Test Scores & Achievements
+                </h2>
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                  {member.data.testScores.map(item => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+      
+      <!-- Attorney Biography -->
+      <div class="mb-16">
+        <h2 class="text-2xl font-bold text-blue-800 mb-6 pb-2 border-b border-indigo-100">Biography</h2>
+        <div class="text-gray-700 space-y-4">
+          <Content />
+        </div>
+      </div>
+      
+      <!-- Experience & Expertise -->
+      <div class="grid md:grid-cols-2 gap-8 mb-16">
+        {member.data.experience && member.data.experience.length > 0 && (
+          <div>
+            <h2 class="text-2xl font-bold text-blue-800 mb-6 pb-2 border-b border-indigo-100">Experience Highlights</h2>
+            <ul class="space-y-3">
+              {member.data.experience.map(item => (
+                <li class="flex items-start">
+                  <span class="text-orange-500 mr-2">✓</span>
+                  <span class="text-gray-700">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+        
+        {member.data.practiceFocus && member.data.practiceFocus.length > 0 && (
+          <div>
+            <h2 class="text-2xl font-bold text-blue-800 mb-6 pb-2 border-b border-indigo-100">Practice Focus</h2>
+            <div class="flex flex-wrap gap-3">
+              {member.data.practiceFocus.map(focus => (
+                <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
+                  {focus}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+      
+      <!-- Publications, Speaking, and Other Sections -->
+      <div class="grid md:grid-cols-2 gap-8">
+        {member.data.publications && member.data.publications.length > 0 && (
+          <div>
+            <h2 class="text-2xl font-bold text-blue-800 mb-6 pb-2 border-b border-indigo-100 flex items-center">
+              <BookOpen className="w-5 h-5 mr-2" /> Publications
+            </h2>
+            <ul class="space-y-4">
+              {member.data.publications.map(pub => (
+                <li class="flex items-start">
+                  <span class="text-orange-500 mr-2">•</span>
+                  <span class="text-gray-700">{pub}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+        
+        {member.data.speaking && member.data.speaking.length > 0 && (
+          <div>
+            <h2 class="text-2xl font-bold text-blue-800 mb-6 pb-2 border-b border-indigo-100">Speaking Engagements</h2>
+            <ul class="space-y-4">
+              {member.data.speaking.map(item => (
+                <li class="flex items-start">
+                  <span class="text-orange-500 mr-2">•</span>
+                  <span class="text-gray-700">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+      
+      <!-- Back to Team Button -->
+      <div class="mt-16 text-center">
+        <a 
+          href="/team" 
+          class="inline-block bg-blue-800 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+        >
+          Back to Team
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout> 

@@ -1,5 +1,7 @@
 ---
-import { SITE } from 'astrowind:config';
+
+import { Image } from 'astro:assets';
+import myLogo from '~/assets/images/Logo_With_Text_Transparent.png'
 ---
 
-<img src="src/assets/images/Logo_With_Text_Transparent.png" width="250" height="100" aria-label='logo'>
+<Image src={myLogo} alt="Logo" width={250} height={100} />

@@ -47,7 +47,7 @@ const metadataDefinition = () =>
     .optional();
 
 const postCollection = defineCollection({
-  loader: glob({ pattern: ['*.md', '*.mdx'], base: 'src/data/post' }),
+  loader: glob({ pattern: ['*.md', '*.mdx'], base: './src/content/post' }),
   schema: z.object({
     publishDate: z.date().optional(),
     updateDate: z.date().optional(),
@@ -65,6 +65,28 @@ const postCollection = defineCollection({
   }),
 });
 
+const teamCollection = defineCollection({
+  loader: glob({ pattern: ['*.md', '*.mdx'], base: './src/content/team' }),
+  schema: ({image}) => z.object({
+    slug: z.string(),
+    name: z.string(),
+    title: z.string(),
+    image: image(),
+    email: z.string().email(),
+    phone: z.string(),
+    education: z.array(z.string()),
+    barAdmissions: z.array(z.string()),
+    experience: z.array(z.string()),
+    practiceFocus: z.array(z.string()),
+    publications: z.array(z.string()),
+    speaking: z.array(z.string()).optional(),
+    testScores: z.array(z.string()).optional(),
+    licenses: z.array(z.string()).optional(),
+    
+  }),
+});
+
 export const collections = {
+  team: teamCollection,
   post: postCollection,
 };

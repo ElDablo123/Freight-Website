@@ -12,7 +12,8 @@ import FAQs from '~/components/widgets/FAQs.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import ContactUs from '~/components/widgets/ContactUs.astro';
-import FeatureSection from '~/components/color';
+import FeatureSection from '~/components/FeatureSection';
+import balanced from '~/assets/images/balanced.jpg'
 
 const metadata = {
   title: 'Freight Collection Solutions Law Group, PLLC',
@@ -24,10 +25,10 @@ const metadata = {
   <!-- Hero Widget ******************* -->
   
   <Features3
-    image={{ src: '~/assets/images/image 5.png', alt: 'Image' }}
+    image={{ src: balanced, alt: 'Image' }}
   />
 
-
+    
 
   <Stats
     stats={[
@@ -42,42 +43,7 @@ const metadata = {
   
  
 
-  <!-- Features Widget *************** -->
-
-  
-  <!-- Content Widget **************** -->
-
-  
-
-  <!-- Content Widget **************** -->
-
-  
-
-  <!-- Content Widget **************** -->
-
-  
-
-  <!-- Steps Widget ****************** -->
-
-  
-
-  <!-- Features2 Widget ************** -->
-
-  
-
-  <!-- HighlightedPosts Widget ******* -->
-
-  
-
-  <!-- FAQs Widget ******************* -->
-
-  
-
-  <!-- Stats Widget ****************** -->
-
-  
-
-  <!-- CallToAction Widget *********** -->
+ 
 
   
 </Layout>

@@ -3,11 +3,7 @@ import { getPermalink, getBlogPermalink, getAsset } from './utils/permalinks';
 export const headerData = {
   links: [
     {
-      text: 'Team',
-      links: [
-        
-        
-      ],
+       text: 'Team', href: getPermalink('team') 
     },
     {
       text: 'Pages',
@@ -75,7 +71,6 @@ export const footerData = {
     
   ],
   footNote: `
-    <img class="w-15 h-10 md:w-15 md:h-10 md:-mt-2 bg-cover mr-3 rtl:mr-0 rtl:ml-1.5 float-left rtl:float-right " src="src/assets/images/Logo_Transparent.png" alt="FCS logo" loading="lazy"></img>
      2024 Freight Collection Solutions Law Group, PLLC. All rights reserved.
   `,
 };

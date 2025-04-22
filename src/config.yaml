@@ -11,14 +11,14 @@ metadata:
   title:
     default: Freight Collection Solutions Law Group PLLC
     template: '%s — Freight Collection Solutions Law Group PLLC'
-  description: "\U0001F680 Suitable for Startups, Small Business, Sass Websites, Professional Portfolios, Marketing Websites, Landing Pages & Blogs."
+  description: "\U0001F680 Freight Collection Solutions Law Group PLLC"
   robots:
     index: true
     follow: true
   openGraph:
     site_name: Freight Collection Solutions Law Group PLLC
     images:
-      - url: '~/assets/images/default.png'
+      - url: '~/assets/images/Logo_With_Text_Transparent.png'
         width: 1200
         height: 628
     type: website

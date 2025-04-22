@@ -1,0 +1,175 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import { Image } from 'astro:assets';
+
+
+// Import placeholder images - replace with actual team member images later
+import placeholderImage from '~/assets/images/placeholder.png';
+
+const metadata = {
+  title: 'Our Team | Freight Collection Solutions Law Group, PLLC',
+};
+
+// Team members data
+const partners =[
+  {
+    name: 'Cristina Belaval',
+    title: 'Managing Partner',
+    image: '/src/assets/images/cristina-belaval-headshot.jfif',
+    slug: 'cristina-belaval',
+    specialties: ['Commercial Litigation', 'International Arbitration']
+  }
+]
+const attorneys = [
+  
+  {
+    name: 'John Smith',
+    title: 'Managing Attorney',
+    image: placeholderImage,
+    slug: 'john-smith',
+    specialties: ['Freight Collections', 'Commercial Litigation']
+  },
+  
+];
+
+const paralegals = [
+  {
+    name: 'Magaly Sanchez',
+    title: 'Paralegal',
+    image: placeholderImage,
+    slug: 'magaly-sanchez',
+    specialties: ['Case Management', 'Legal Research']
+  },
+  {
+    name: 'Bella Shelly',
+    title: 'Paralegal',
+    image: placeholderImage,
+    slug: 'bella-shelly',
+    specialties: ['Document Preparation', 'Client Communication']
+  },
+  {
+    name: 'Stacy Dollagary',
+    title: 'Paralegal',
+    image: placeholderImage,
+    slug: 'stacy-dollagary',
+    specialties: ['Collections Support', 'Administrative Tasks']
+  }
+];
+---
+
+<Layout metadata={metadata}>
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <h1 class="text-4xl font-bold text-center mb-4">Our Team</h1>
+      <p class="text-gray-600 text-center mb-16 max-w-3xl mx-auto">
+        Our experienced team of attorneys and paralegals specializes in transportation industry collections 
+        and is dedicated to achieving the best possible outcomes for our clients.
+      </p>
+      <!-- Partners Section -->
+      <div class="mb-20 ">
+        <h2 class="text-3xl font-bold text-center mb-12 text-blue-800">Partners</h2>
+        <div class="grid gap-8 justify-center">
+          {partners.map(partner => (
+            <div class="bg-white border border-indigo-100 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:-translate-y-2">
+              <div class="h-64 bg-white flex items-center justify-center relative">
+                <Image  
+                  src={partner.image} 
+                  alt={partner.name}
+                  class="object-cover"
+                  width={256}
+                  height={256}
+                /> 
+                <div class="absolute bottom-0 left-0 right-0 h-4 bg-white"></div>
+              </div>
+              <div class="p-6 text-center relative z-10 bg-white">
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">{partner.name}</h3>
+                <p class="text-orange-500 font-medium mb-3">{partner.title}</p>
+                <div class="flex flex-wrap justify-center gap-2 mb-4">
+                  {partner.specialties.map(specialty => (
+                    <span class="px-3 py-1 bg-blue-50 text-blue-800 text-sm rounded-full">
+                      {specialty}
+                    </span>
+                  ))}
+                </div>
+                <a 
+                  href={`/team/${partner.slug}`} 
+                  class="inline-block bg-blue-800 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+                >
+                  Learn More
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <!-- Attorneys Section -->
+      <div class="mb-20">
+        <h2 class="text-3xl font-bold text-center mb-12 text-blue-800">Attorneys</h2>
+        <div class="grid gap-8 justify-center">
+          {attorneys.map(attorney => (
+            <div class="bg-white border border-indigo-100 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:-translate-y-2">
+              <div class="h-64 bg-white flex items-center justify-center relative">
+                <Image  
+                  src={attorney.image} 
+                  alt={attorney.name}
+                  class="object-cover"
+                  width={256}
+                  height={256}
+                /> 
+                <div class="absolute bottom-0 left-0 right-0 h-4 bg-white"></div>
+              </div>
+              <div class="p-6 text-center relative z-10 bg-white">
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">{attorney.name}</h3>
+                <p class="text-orange-500 font-medium mb-3">{attorney.title}</p>
+                <div class="flex flex-wrap justify-center gap-2 mb-4">
+                  {attorney.specialties.map(specialty => (
+                    <span class="px-3 py-1 bg-blue-50 text-blue-800 text-sm rounded-full">
+                      {specialty}
+                    </span>
+                  ))}
+                </div>
+                <a 
+                  href={`/team/${attorney.slug}`} 
+                  class="inline-block bg-blue-800 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+                >
+                  Learn More
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      
+      <!-- Paralegals Section -->
+      <div>
+        <h2 class="text-3xl font-bold text-center mb-12 text-blue-800">Paralegals</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {paralegals.map(paralegal => (
+            <div class="bg-white border border-indigo-100 rounded-lg shadow hover:shadow-lg transition-all duration-300">
+              <div class="h-56 overflow-hidden">
+                <Image 
+                  src={paralegal.image} 
+                  alt={paralegal.name}
+                  class="w-full h-full object-cover"
+                  width={300}
+                  height={400}
+                />
+              </div>
+              <div class="p-6 text-center">
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">{paralegal.name}</h3>
+                <p class="text-orange-500 font-medium mb-3">{paralegal.title}</p>
+                <div class="flex flex-wrap justify-center gap-2 mb-4">
+                  {paralegal.specialties.map(specialty => (
+                    <span class="px-3 py-1 bg-indigo-50 text-indigo-800 text-sm rounded-full">
+                      {specialty}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

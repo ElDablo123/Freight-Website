@@ -1,7 +1,8 @@
 ---
 import { Icon } from 'astro-icon/components';
-import { SITE } from 'astrowind:config';
 import { getHomePermalink } from '~/utils/permalinks';
+import { Image } from 'astro:assets';
+import smallLogo from '~/assets/images/Logo_Transparent.png'
 
 interface Link {
   text?: string;
@@ -96,8 +97,10 @@ const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme 
         )
       }
 
-      
-        <Fragment set:html={footNote} />
+ <script>/* <img class="w-15 h-10 md:w-15 md:h-10 md:-mt-2 bg-cover mr-3 rtl:mr-0 rtl:ml-1.5 float-left rtl:float-right " src="src/assets/images/Logo_Transparent.png" alt="FCS logo" loading="lazy"></img> */</script>
+         <Image src={smallLogo}  alt='FCS logo' width={150} height={100}/>
+         <Fragment set:html={footNote} />
+         
       
     </div>
   </div>
