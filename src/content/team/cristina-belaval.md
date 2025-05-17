@@ -2,7 +2,7 @@
 slug: cristina-belaval
 name: Cristina Belaval
 title: Managing Partner
-image: /src/assets/images/cristina-belaval-headshot.jfif
+image: /src/assets/images/cristina-v2.jfif
 email: cristina@freight-cs.com
 phone: (832) 554-3134
 education:
