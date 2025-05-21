@@ -2,7 +2,7 @@
 slug: stacy-dollagaray
 name: Stacy L. Dollagaray
 title: Senior Paralegal
-image: /src/assets/images/placeholder.jfif
+image: /src/assets/images/stacy.jfif
 
 
 ---
