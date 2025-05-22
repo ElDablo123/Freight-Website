@@ -3,7 +3,15 @@ import { getPermalink, } from './utils/permalinks';
 export const headerData = {
   links: [
     {
+      text: 'Home',
+      href: getPermalink('/')
+    },
+    {
        text: 'Team', href: getPermalink('team') 
+    },
+    {
+      text: 'Practice Areas',
+      href: getPermalink('practice-areas')
     },
     
     {
@@ -19,17 +27,19 @@ export const footerData = {
   links: [
     
     {
-      title: 'Platform',
+      title: 'Team',
       links: [
-        
+        { text: 'Partners', href: getPermalink('team/#partners') },
+        { text: 'Paralegals', href: getPermalink('team/#paralegals') },
 
       ],
     },
     {
-      title: 'Support',
+      title: 'Practice Areas',
       links: [
-        
-
+        { text: 'Freight Collections', href: getPermalink('practice-areas') },
+        { text: 'Commercial Litigation', href: getPermalink('practice-areas') },  
+        { text: 'Contract Review', href: getPermalink('practice-areas') },
       ],
     },
     {

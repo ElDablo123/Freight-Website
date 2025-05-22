@@ -1,7 +1,13 @@
 ---
-
 import { Image } from 'astro:assets';
 import myLogo from '~/assets/images/Logo_With_Text_Transparent.png'
 ---
 
-<Image src={myLogo} alt="Logo" width={250} height={100} />
+<Image 
+  src={myLogo} 
+  alt="Logo" 
+  width={250} 
+  height={100} 
+  class="w-[150px] md:w-[200px] lg:w-[250px] h-auto transition-all duration-300"
+  loading="eager"
+/> 

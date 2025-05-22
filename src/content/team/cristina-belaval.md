@@ -2,9 +2,9 @@
 slug: cristina-belaval
 name: Cristina Belaval
 title: Managing Partner
-image: /src/assets/images/cristina-v2.jfif
+image: /src/assets/images/Cristina-Belaval.jpg
 email: cristina@freight-cs.com
-phone: (832) 554-3134
+phone: (346) 574-3483
 education:
   - Master of Laws (LLM), Energy, Environment, and Natural Resources Law, University of Houston Law Center, 2016–2017
   - Doctor of Law (JD), Law (Magna Cum Laude), Inter American University School of Law, 1999–2002
@@ -44,7 +44,7 @@ licenses:
   - U.S. Court of Appeals for the Fifth Circuit (Issued Jan 2019)
 ---
 
-Accomplished Attorney and Senior Counsel Executive with 15 years’ experience specializing in commercial litigation, civil appeals, commercial international arbitration proceedings, lender’s liability, construction disputes, insurance subrogation claims, high‑dollar mortgage foreclosures of development projects and security interests (including First Preferred Ship Mortgage foreclosure), Uniform Commercial Code, Securities Fraud, Truth in Lending Act, Bank Holding Company Act, Real Estate Settlement Procedures Act, and other consumer protection laws and regulations. Email: beaval.cristina@gmail.com
+Accomplished Attorney and Senior Counsel Executive with 15 years’ experience specializing in commercial litigation, civil appeals, commercial international arbitration proceedings, lender’s liability, construction disputes, insurance subrogation claims, high‑dollar mortgage foreclosures of development projects and security interests (including First Preferred Ship Mortgage foreclosure), Uniform Commercial Code, Securities Fraud, Truth in Lending Act, Bank Holding Company Act, Real Estate Settlement Procedures Act, and other consumer protection laws and regulations.
 
 First‑chaired in non‑jury trials and second‑chaired in jury trials and arbitration proceedings. Commercial litigation work includes pleadings, depositions, written discovery, appeals and judgment enforcement. Became senior associate after four years practicing law; a year later was named Junior Partner, a position held until August 2016, when she moved to Houston to attend the University of Houston Law Center’s LLM program in Energy, Environment and Natural Resources Law. While studying the LLM, she retained 100% of her clients and provided legal services remotely.
 
@@ -62,4 +62,3 @@ Strong analytical, problem‑solving, and communication skills. Ability to work 
 - Electronic Funds Transfer Act (EFTA) & Regulation E
 - Self‑help Mechanisms under UCC Art. 9
 
-You may contact me at (787) 562‑5761.  

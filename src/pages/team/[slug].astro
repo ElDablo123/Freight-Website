@@ -1,7 +1,7 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import { Image } from 'astro:assets';
-import { Phone, Mail, Award, Briefcase, BookOpen, FileCheck, Star } from 'lucide-react';
+import { Phone, Mail, Award, Briefcase, BookOpen, ChevronDown, MicVocal } from 'lucide-react';
 import { getCollection } from 'astro:content';
 import { render } from 'astro:content';
 
@@ -28,10 +28,11 @@ const metadata = {
 <Layout metadata={metadata}>
   <section class="py-16 bg-white">
     <div class="container mx-auto px-4">
-      <!-- Attorney Header -->
-      <div class="flex flex-col md:flex-row gap-8 mb-12">
+      <!-- Attorney Header with Photo and Basic Info -->
+      <div class="flex flex-col md:flex-row gap-8 mb-8">
+        <!-- Left Column: Photo and Contact Info -->
         <div class="md:w-1/3">
-          <div class="rounded-lg overflow-hidden shadow-xl">
+          <div class="rounded-lg overflow-hidden shadow-xl mb-6">
             <Image 
               src={member.data.image} 
               alt={member.data.name}
@@ -40,150 +41,196 @@ const metadata = {
               height={600}
             />
           </div>
-        </div>
-        <div class="md:w-2/3">
-          <h1 class="text-4xl font-bold text-gray-800 mb-2">{member.data.name}</h1>
-          <p class="text-2xl text-orange-500 mb-6">{member.data.title}</p>
           
-          <div class="flex items-center mb-4">
-            <Mail className="w-5 h-5 text-blue-800 mr-3" />
-            <a href={`mailto:${member.data.email}`} class="text-blue-800 hover:underline">{member.data.email}</a>
-          </div>
-          
-          <div class="flex items-center mb-8">
-            <Phone className="w-5 h-5 text-blue-800 mr-3" />
-            <a href={`tel:${member.data.phone.replace(/\D/g,'')}`} class="text-blue-800 hover:underline">{member.data.phone}</a>
-          </div>
-          
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {member.data.education && member.data.education.length > 0 && (
-              <div class="bg-indigo-50 rounded-lg p-4">
-                <h2 class="text-lg font-semibold text-blue-800 mb-3 flex items-center">
-                  <Award className="w-5 h-5 mr-2" /> Education
-                </h2>
-                <ul class="list-disc list-inside space-y-2 text-gray-700">
-                  {member.data.education.map(item => (
-                    <li>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
+          <div class="bg-white p-4 rounded-lg shadow-md">
+            <h1 class="text-2xl font-bold text-gray-800 mb-2">{member.data.name}</h1>
+            <p class="text-xl text-orange-500 mb-4">{member.data.title}</p>
             
-            {member.data.barAdmissions && member.data.barAdmissions.length > 0 && (
-              <div class="bg-indigo-50 rounded-lg p-4">
-                <h2 class="text-lg font-semibold text-blue-800 mb-3 flex items-center">
-                  <Briefcase className="w-5 h-5 mr-2" /> Bar Admissions
-                </h2>
-                <ul class="list-disc list-inside space-y-2 text-gray-700">
-                  {member.data.barAdmissions.map(item => (
-                    <li>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
-            {member.data.licenses && member.data.licenses.length > 0 && (
-              <div class="bg-indigo-50 rounded-lg p-4">
-                <h2 class="text-lg font-semibold text-blue-800 mb-3 flex items-center">
-                  <FileCheck className="w-5 h-5 mr-2" /> Licenses
-                </h2>
-                <ul class="list-disc list-inside space-y-2 text-gray-700">
-                  {member.data.licenses.map(item => (
-                    <li>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
-            {member.data.testScores && member.data.testScores.length > 0 && (
-              <div class="bg-indigo-50 rounded-lg p-4">
-                <h2 class="text-lg font-semibold text-blue-800 mb-3 flex items-center">
-                  <Star className="w-5 h-5 mr-2" /> Test Scores & Achievements
-                </h2>
-                <ul class="list-disc list-inside space-y-2 text-gray-700">
-                  {member.data.testScores.map(item => (
-                    <li>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
+            <div class="flex items-center mb-3">
+              <Mail className="w-5 h-5 text-blue-800 mr-3" />
+              <a href={`mailto:${member.data.email}`} class="text-blue-800 hover:underline">{member.data.email}</a>
+            </div>
+            
+            <div class="flex items-center">
+              <Phone className="w-5 h-5 text-blue-800 mr-3" />
+              <a href={`tel:${member.data.phone.replace(/\D/g,'')}`} class="text-blue-800 hover:underline">{member.data.phone}</a>
+            </div>
           </div>
         </div>
-      </div>
-      
-      <!-- Attorney Biography -->
-      <div class="mb-16">
-        <h2 class="text-2xl font-bold text-blue-800 mb-6 pb-2 border-b border-indigo-100">Biography</h2>
-        <div class="text-gray-700 space-y-4">
-          <Content />
-        </div>
-      </div>
-      
-      <!-- Experience & Expertise -->
-      <div class="grid md:grid-cols-2 gap-8 mb-16">
-        {member.data.experience && member.data.experience.length > 0 && (
-          <div>
-            <h2 class="text-2xl font-bold text-blue-800 mb-6 pb-2 border-b border-indigo-100">Experience Highlights</h2>
-            <ul class="space-y-3">
-              {member.data.experience.map(item => (
-                <li class="flex items-start">
-                  <span class="text-orange-500 mr-2">✓</span>
-                  <span class="text-gray-700">{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
         
-        {member.data.practiceFocus && member.data.practiceFocus.length > 0 && (
-          <div>
-            <h2 class="text-2xl font-bold text-blue-800 mb-6 pb-2 border-b border-indigo-100">Practice Focus</h2>
-            <div class="flex flex-wrap gap-3">
-              {member.data.practiceFocus.map(focus => (
-                <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
-                  {focus}
-                </span>
-              ))}
+        <!-- Right Column: Biography -->
+        <div class="md:w-2/3">
+          <div class="mb-4 relative">
+            <h2 class="text-2xl font-bold text-blue-800 mb-6 pb-2 border-b border-indigo-100">Biography</h2>
+            <div class="text-gray-700 space-y-4 biography-preview" style="max-height: 300px; overflow: hidden;">
+              <Content />
+            </div>
+            <div class="mt-4">
+              <button 
+                id="readMoreBtn"
+                class="inline-block bg-blue-800 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                Read More
+              </button>
+            </div>
+          </div>
+          
+          <!-- Practice Focus Tags -->
+          {member.data.practiceFocus && member.data.practiceFocus.length > 0 && (
+            <div class="mb-6">
+              <h3 class="text-xl font-semibold text-blue-800 mb-4">Practice Focus</h3>
+              <div class="flex flex-wrap gap-3">
+                {member.data.practiceFocus.map(focus => (
+                  <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
+                    {focus}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+      
+      <!-- Dropdown Sections -->
+      <div class="mb-12 mt-12 border-t border-gray-200 pt-8">
+        <!-- Experience Dropdown -->
+        {member.data.experience && member.data.experience.length > 0 && (
+          <div class="dropdown-widget border border-gray-200 rounded-lg mb-4 overflow-hidden">
+            <button class="dropdown-toggle w-full flex items-center justify-between bg-white p-4 text-left focus:outline-none">
+              <h3 class="text-xl font-bold text-blue-800 flex items-center">
+                <Briefcase className="w-5 h-5 mr-3 text-orange-500" /> 
+                Experience Highlights
+              </h3>
+              <span class="toggle-icon text-blue-800">
+                <ChevronDown className="w-6 h-6" />
+              </span>
+            </button>
+            <div class="dropdown-content bg-white p-6 hidden">
+              <ul class="space-y-3">
+                {member.data.experience.map(item => (
+                  <li class="flex items-start">
+                    <span class="text-orange-500 mr-2">✓</span>
+                    <span class="text-gray-700">{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         )}
-      </div>
-      
-      <!-- Publications, Speaking, and Other Sections -->
-      <div class="grid md:grid-cols-2 gap-8">
+        
+        <!-- Publications Dropdown -->
         {member.data.publications && member.data.publications.length > 0 && (
-          <div>
-            <h2 class="text-2xl font-bold text-blue-800 mb-6 pb-2 border-b border-indigo-100 flex items-center">
-              <BookOpen className="w-5 h-5 mr-2" /> Publications
-            </h2>
-            <ul class="space-y-4">
-              {member.data.publications.map(pub => (
-                <li class="flex items-start">
-                  <span class="text-orange-500 mr-2">•</span>
-                  <span class="text-gray-700">{pub}</span>
-                </li>
-              ))}
-            </ul>
+          <div class="dropdown-widget border border-gray-200 rounded-lg mb-4 overflow-hidden">
+            <button class="dropdown-toggle w-full flex items-center justify-between bg-white p-4 text-left focus:outline-none">
+              <h3 class="text-xl font-bold text-blue-800 flex items-center">
+                <BookOpen className="w-5 h-5 mr-3 text-orange-500" /> 
+                Publications
+              </h3>
+              <span class="toggle-icon text-blue-800">
+                <ChevronDown className="w-6 h-6" />
+              </span>
+            </button>
+            <div class="dropdown-content bg-white p-6 hidden">
+              <ul class="space-y-4">
+                {member.data.publications.map(pub => (
+                  <li class="flex items-start">
+                    <span class="text-orange-500 mr-2">•</span>
+                    <span class="text-gray-700">{pub}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         )}
         
+        <!-- Speaking Engagements Dropdown -->
         {member.data.speaking && member.data.speaking.length > 0 && (
-          <div>
-            <h2 class="text-2xl font-bold text-blue-800 mb-6 pb-2 border-b border-indigo-100">Speaking Engagements</h2>
-            <ul class="space-y-4">
-              {member.data.speaking.map(item => (
-                <li class="flex items-start">
-                  <span class="text-orange-500 mr-2">•</span>
-                  <span class="text-gray-700">{item}</span>
-                </li>
-              ))}
-            </ul>
+          <div class="dropdown-widget border border-gray-200 rounded-lg mb-4 overflow-hidden">
+            <button class="dropdown-toggle w-full flex items-center justify-between bg-white p-4 text-left focus:outline-none">
+              <h3 class="text-xl font-bold text-blue-800 flex items-center">
+                <MicVocal className="w-5 h-5 mr-3 text-orange-500" /> 
+                Speaking Engagements
+              </h3>
+              <span class="toggle-icon text-blue-800">
+                <ChevronDown className="w-6 h-6" />
+              </span>
+            </button>
+            <div class="dropdown-content bg-white p-6 hidden">
+              <ul class="space-y-4">
+                {member.data.speaking.map(item => (
+                  <li class="flex items-start">
+                    <span class="text-orange-500 mr-2">•</span>
+                    <span class="text-gray-700">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         )}
+        
+        <!-- Education & Credentials Dropdown -->
+        <div class="dropdown-widget border border-gray-200 rounded-lg mb-4 overflow-hidden">
+          <button class="dropdown-toggle w-full flex items-center justify-between bg-white p-4 text-left focus:outline-none">
+            <h3 class="text-xl font-bold text-blue-800 flex items-center">
+              <Award className="w-5 h-5 mr-3 text-orange-500" /> 
+              Education & Credentials
+            </h3>
+            <span class="toggle-icon text-blue-800">
+              <ChevronDown className="w-6 h-6" />
+            </span>
+          </button>
+          <div class="dropdown-content bg-white p-6 hidden">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {member.data.education && member.data.education.length > 0 && (
+                <div>
+                  <h4 class="font-semibold text-blue-800 mb-3">Education</h4>
+                  <ul class="list-disc list-inside space-y-2 text-gray-700">
+                    {member.data.education.map(item => (
+                      <li>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              
+              {member.data.barAdmissions && member.data.barAdmissions.length > 0 && (
+                <div>
+                  <h4 class="font-semibold text-blue-800 mb-3">Bar Admissions</h4>
+                  <ul class="list-disc list-inside space-y-2 text-gray-700">
+                    {member.data.barAdmissions.map(item => (
+                      <li>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              
+              {member.data.licenses && member.data.licenses.length > 0 && (
+                <div class="mt-4">
+                  <h4 class="font-semibold text-blue-800 mb-3">Licenses</h4>
+                  <ul class="list-disc list-inside space-y-2 text-gray-700">
+                    {member.data.licenses.map(item => (
+                      <li>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              
+              {member.data.testScores && member.data.testScores.length > 0 && (
+                <div class="mt-4">
+                  <h4 class="font-semibold text-blue-800 mb-3">Test Scores & Achievements</h4>
+                  <ul class="list-disc list-inside space-y-2 text-gray-700">
+                    {member.data.testScores.map(item => (
+                      <li>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
       
       <!-- Back to Team Button -->
-      <div class="mt-16 text-center">
+      <div class="text-center">
         <a 
           href="/team" 
           class="inline-block bg-blue-800 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors"
@@ -193,4 +240,91 @@ const metadata = {
       </div>
     </div>
   </section>
-</Layout> 
+</Layout>
+
+<script is:inline>
+  // Using is:inline to ensure the script runs immediately on page load
+  function initializeDropdowns() {
+    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+    
+    dropdownToggles.forEach(toggle => {
+      toggle.addEventListener('click', function() {
+        const content = this.nextElementSibling;
+        const icon = this.querySelector('.toggle-icon');
+        
+        // Toggle content visibility
+        content.classList.toggle('hidden');
+        
+        // Toggle icon
+        if (content.classList.contains('hidden')) {
+          icon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><polyline points="6 9 12 15 18 9"></polyline></svg>';
+        } else {
+          icon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><polyline points="18 15 12 9 6 15"></polyline></svg>';
+        }
+      });
+    });
+    
+    // Biography read more functionality
+    const readMoreBtn = document.getElementById('readMoreBtn');
+    const biographyPreview = document.querySelector('.biography-preview');
+    
+    if (readMoreBtn && biographyPreview) {
+      readMoreBtn.addEventListener('click', function() {
+        if (biographyPreview.style.maxHeight === '300px' || biographyPreview.style.maxHeight === '') {
+          biographyPreview.style.maxHeight = 'none';
+          biographyPreview.style.overflow = 'visible';
+          this.textContent = 'Show Less';
+        } else {
+          biographyPreview.style.maxHeight = '300px';
+          biographyPreview.style.overflow = 'hidden';
+          this.textContent = 'Read More';
+        }
+      });
+    }
+    
+    // Open first dropdown by default
+    const firstDropdown = document.querySelector('.dropdown-toggle');
+    if (firstDropdown) {
+      firstDropdown.click();
+    }
+  }
+
+  // Run initialization as soon as possible
+  document.addEventListener('DOMContentLoaded', initializeDropdowns);
+  
+  // Backup initialization in case DOMContentLoaded already fired
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    setTimeout(initializeDropdowns, 1);
+  }
+</script>
+
+<style>
+  /* Dropdown animations */
+  .dropdown-content {
+    max-height: 0;
+    transition: max-height 0.3s ease-out;
+  }
+  
+  .dropdown-content:not(.hidden) {
+    max-height: 5000px;
+  }
+  
+  /* For smooth transitions */
+  .biography-preview {
+    transition: max-height 0.5s ease-out;
+  }
+  
+  /* Hover effects for dropdowns */
+  .dropdown-widget:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+  
+  .dropdown-toggle:hover {
+    background-color: #f9fafb;
+  }
+  
+  /* Add scroll-margin for smooth scrolling with fixed header */
+  .scroll-mt-24 {
+    scroll-margin-top: 6rem;
+  }
+</style> 

@@ -5,7 +5,7 @@ import { Image } from 'astro:assets';
 
 // Import placeholder images - replace with actual team member images later
 import placeholderImage from '~/assets/images/placeholder.png';
-
+import cristinaBelavalImage from '~/assets/images/Cristina-Belaval.jpg';
 const metadata = {
   title: 'Our Team | Freight Collection Solutions Law Group, PLLC',
 };
@@ -15,20 +15,14 @@ const partners =[
   {
     name: 'Cristina Belaval',
     title: 'Managing Partner',
-    image: '/src/assets/images/christina-team.jfif',
+    image: cristinaBelavalImage,
     slug: 'cristina-belaval',
     specialties: ['Commercial Litigation', 'International Arbitration']
   }
 ]
 const attorneys = [
   
-  {
-    name: 'John Smith',
-    title: 'Managing Attorney',
-    image: placeholderImage,
-    slug: 'john-smith',
-    specialties: ['Freight Collections', 'Commercial Litigation']
-  },
+
   
 ];
 
@@ -65,8 +59,9 @@ const paralegals = [
         Our experienced team of attorneys and paralegals specializes in transportation industry collections 
         and is dedicated to achieving the best possible outcomes for our clients.
       </p>
-      <!-- Partners Section -->
-      <div class="mb-20 ">
+      
+      <!-- Partners Section with ID for anchor targeting -->
+      <div id="partners" class="mb-20 scroll-mt-24">
         <h2 class="text-3xl font-bold text-center mb-12 text-blue-800">Partners</h2>
         <div class="grid gap-8 justify-center">
           {partners.map(partner => (
@@ -76,8 +71,8 @@ const paralegals = [
                   src={partner.image} 
                   alt={partner.name}
                   class="object-cover"
-                  width={256}
-                  height={256}
+                  width={300}
+                  height={300}
                 /> 
                 <div class="absolute bottom-0 left-0 right-0 h-4 bg-white"></div>
               </div>
@@ -102,46 +97,49 @@ const paralegals = [
           ))}
         </div>
       </div>
-      <!-- Attorneys Section -->
-      <div class="mb-20">
-        <h2 class="text-3xl font-bold text-center mb-12 text-blue-800">Attorneys</h2>
-        <div class="grid gap-8 justify-center">
-          {attorneys.map(attorney => (
-            <div class="bg-white border border-indigo-100 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:-translate-y-2">
-              <div class="h-64 bg-white flex items-center justify-center relative">
-                <Image  
-                  src={attorney.image} 
-                  alt={attorney.name}
-                  class="object-cover"
-                  width={256}
-                  height={256}
-                /> 
-                <div class="absolute bottom-0 left-0 right-0 h-4 bg-white"></div>
-              </div>
-              <div class="p-6 text-center relative z-10 bg-white">
-                <h3 class="text-xl font-semibold text-gray-800 mb-2">{attorney.name}</h3>
-                <p class="text-orange-500 font-medium mb-3">{attorney.title}</p>
-                <div class="flex flex-wrap justify-center gap-2 mb-4">
-                  {attorney.specialties.map(specialty => (
-                    <span class="px-3 py-1 bg-blue-50 text-blue-800 text-sm rounded-full">
-                      {specialty}
-                    </span>
-                  ))}
-                </div>
-                <a 
-                  href={`/team/${attorney.slug}`} 
-                  class="inline-block bg-blue-800 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
-                >
-                  Learn More
-                </a>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
       
-      <!-- Paralegals Section -->
-      <div>
+      <!-- Attorneys Section - Only displayed if there are attorneys -->
+      {attorneys.length > 0 && (
+        <div class="mb-20">
+          <h2 class="text-3xl font-bold text-center mb-12 text-blue-800">Attorneys</h2>
+          <div class="grid gap-8 justify-center">
+            {attorneys.map(attorney => (
+              <div class="bg-white border border-indigo-100 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:-translate-y-2">
+                <div class="h-64 bg-white flex items-center justify-center relative">
+                  <Image  
+                    src={attorney.image} 
+                    alt={attorney.name}
+                    class="object-cover"
+                    width={300}
+                    height={300}
+                  /> 
+                  <div class="absolute bottom-0 left-0 right-0 h-4 bg-white"></div>
+                </div>
+                <div class="p-6 text-center relative z-10 bg-white">
+                  <h3 class="text-xl font-semibold text-gray-800 mb-2">{attorney.name}</h3>
+                  <p class="text-orange-500 font-medium mb-3">{attorney.title}</p>
+                  <div class="flex flex-wrap justify-center gap-2 mb-4">
+                    {attorney.specialties.map(specialty => (
+                      <span class="px-3 py-1 bg-blue-50 text-blue-800 text-sm rounded-full">
+                        {specialty}
+                      </span>
+                    ))}
+                  </div>
+                  <a 
+                    href={`/team/${attorney.slug}`} 
+                    class="inline-block bg-blue-800 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+                  >
+                    Learn More
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+      
+      <!-- Paralegals Section with ID for anchor targeting -->
+      <div id="paralegals" class="scroll-mt-24">
         <h2 class="text-3xl font-bold text-center mb-12 text-blue-800">Paralegals</h2>
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {paralegals.map(paralegal => (

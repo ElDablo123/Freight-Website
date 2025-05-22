@@ -1,6 +1,6 @@
 {
     "$schema": "node_modules/wrangler/config-schema.json",
-    "name": "freight-collection-solutions-law-group",
+    "name": "freight-website-development",
     "compatibility_date": "2025-04-22",
     "assets": {
       "directory": "./dist"
